@@ -85,7 +85,7 @@ function App() {
             </div>
             
             {/* Elegant Logo Text - Solid White */}
-            <h1 className="text-xl font-bold text-white tracking-tight font-display whitespace-nowrap">
+            <h1 className="text-xl font-bold text-gray-300 tracking-tight font-display whitespace-nowrap">
               Space AI Sim
             </h1>
           </div>
