@@ -201,7 +201,7 @@ function App() {
               <span>Guide</span>
             </button>
             <a
-              href="https://github.com"
+              href="https://github.com/tonycletus/space-ai-sim"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-700 rounded-lg transition-all text-sm font-medium"
