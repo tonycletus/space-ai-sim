@@ -16,12 +16,12 @@ import {
   AreaChart,
   Area
 } from 'recharts';
-import { 
-  Cpu, 
-  Sun, 
-  Play, 
-  Activity, 
-  Battery, 
+import {
+  Cpu,
+  Sun,
+  Play,
+  Activity,
+  Battery,
   RotateCw,
   Github,
   HelpCircle
@@ -40,7 +40,7 @@ function App() {
 
   const [isSimulating, setIsSimulating] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  
+
   const results = useMemo(() => calculateSimulation(params), [params]);
 
   const handleRun = () => {
@@ -67,27 +67,49 @@ function App() {
 
       {/* Sidebar / Configuration Panel */}
       <aside className="w-full md:w-80 lg:w-96 bg-gray-900 border-r border-gray-800 flex flex-col h-auto md:h-screen overflow-y-auto z-20 shadow-xl relative">
-        <div className="p-6 border-b border-gray-800">
-          <div className="flex items-center gap-3 mb-2">
-            {/* Custom Designed Icon - Solid Elegant Color */}
-            <div className="w-10 h-10 relative flex items-center justify-center shrink-0">
-              <svg viewBox="0 0 40 40" className="w-full h-full">
-                {/* Orbital Rings - Solid Cyan */}
-                <circle cx="20" cy="20" r="16" fill="none" stroke="#22d3ee" strokeWidth="1.5" strokeDasharray="4 2" className="opacity-40" />
-                
-                {/* Central Hardware - Solid Cyan */}
-                <rect x="12" y="12" width="16" height="16" rx="3" fill="#0f172a" stroke="#22d3ee" strokeWidth="2" />
-                <rect x="16" y="16" width="8" height="8" rx="1" fill="#22d3ee" />
-                
-                {/* Signal indicators */}
-                <path d="M20 8 V4 M20 32 v4 M4 20 h4 M32 20 h4" stroke="#22d3ee" strokeWidth="2" strokeLinecap="round" />
-              </svg>
+        <div className="p-4 md:p-6 border-b border-gray-800">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              {/* Custom Designed Icon - Solid Elegant Color */}
+              <div className="w-10 h-10 relative flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 40 40" className="w-full h-full">
+                  {/* Orbital Rings - Solid Cyan */}
+                  <circle cx="20" cy="20" r="16" fill="none" stroke="#22d3ee" strokeWidth="1.5" strokeDasharray="4 2" className="opacity-40" />
+
+                  {/* Central Hardware - Solid Cyan */}
+                  <rect x="12" y="12" width="16" height="16" rx="3" fill="#0f172a" stroke="#22d3ee" strokeWidth="2" />
+                  <rect x="16" y="16" width="8" height="8" rx="1" fill="#22d3ee" />
+
+                  {/* Signal indicators */}
+                  <path d="M20 8 V4 M20 32 v4 M4 20 h4 M32 20 h4" stroke="#22d3ee" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              {/* Elegant Logo Text - Solid White */}
+              <h1 className="text-xl font-bold text-gray-300 tracking-tight font-display whitespace-nowrap">
+                Space AI Sim
+              </h1>
             </div>
-            
-            {/* Elegant Logo Text - Solid White */}
-            <h1 className="text-xl font-bold text-gray-300 tracking-tight font-display whitespace-nowrap">
-              Space AI Sim
-            </h1>
+
+            {/* Mobile Navigation */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                onClick={() => setIsInfoOpen(true)}
+                className="p-2 bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 rounded-lg transition-all"
+                aria-label="Guide"
+              >
+                <HelpCircle size={18} className="text-cyan-400" />
+              </button>
+              <a
+                href="https://github.com/tonycletus/space-ai-sim"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 rounded-lg transition-all"
+                aria-label="GitHub"
+              >
+                <Github size={18} />
+              </a>
+            </div>
           </div>
           <p className="text-xs text-gray-400 leading-relaxed pl-1">
             Orbital mechanics & power systems.
@@ -101,7 +123,7 @@ function App() {
             </h2>
             <div className="mb-6">
               <label className="text-sm font-medium text-gray-300 block mb-2">Orbit Type</label>
-              <select 
+              <select
                 value={params.orbitType}
                 onChange={(e) => updateParam('orbitType', e.target.value as OrbitType)}
                 className="w-full bg-gray-800 border border-gray-700 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-cyan-500 outline-none transition-all hover:border-gray-600"
@@ -174,7 +196,7 @@ function App() {
         </div>
 
         <div className="p-6 border-t border-gray-800 sticky bottom-0 bg-gray-900/95 backdrop-blur z-10">
-          <button 
+          <button
             onClick={handleRun}
             className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(8,145,178,0.2)]"
           >
@@ -186,9 +208,9 @@ function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-h-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-fixed">
-        
+
         {/* TOP HEADER - NAVIGATION */}
-        <header className="h-16 border-b border-gray-800 bg-gray-900/50 backdrop-blur flex items-center justify-between px-6 md:px-8 z-30">
+        <header className="hidden md:flex h-16 border-b border-gray-800 bg-gray-900/50 backdrop-blur items-center justify-between px-6 md:px-8 z-30">
           <div className="flex items-center gap-2 text-gray-400 text-sm hidden md:flex">
             <span className="bg-gray-800 px-2 py-1 rounded text-xs font-mono">STATUS: SIMULATING</span>
           </div>
@@ -216,27 +238,27 @@ function App() {
         <main className="flex-1 p-4 md:p-8 overflow-y-auto">
           <div className="max-w-6xl mx-auto space-y-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <MetricsCard 
-                title="Daily Power Gen" 
-                value={results.dailyGen} 
+              <MetricsCard
+                title="Daily Power Gen"
+                value={results.dailyGen}
                 unit="kWh"
                 subtext={`From ${results.panelArea.toFixed(1)}m² panels`}
               />
-               <MetricsCard 
-                title="Viability" 
-                value={results.viability} 
+              <MetricsCard
+                title="Viability"
+                value={results.viability}
                 status={results.viability === 'Feasible' ? 'success' : 'danger'}
                 subtext={`Surplus: ${(results.dailyGen - (params.aiPowerDemand * 24)).toFixed(1)} kWh/day`}
               />
-              <MetricsCard 
-                title="Sunlight Uptime" 
-                value={(results.sunlightUptime * 100).toFixed(0)} 
+              <MetricsCard
+                title="Sunlight Uptime"
+                value={(results.sunlightUptime * 100).toFixed(0)}
                 unit="%"
                 subtext={params.orbitType === OrbitType.SSO ? 'Continuous Sunlight' : 'Eclipse Cycles Active'}
               />
-              <MetricsCard 
-                title="Orbital Period" 
-                value={results.orbitalPeriod} 
+              <MetricsCard
+                title="Orbital Period"
+                value={results.orbitalPeriod}
                 unit="min"
                 subtext={`${(1440 / results.orbitalPeriod).toFixed(1)} orbits/day`}
               />
@@ -259,7 +281,7 @@ function App() {
                   </div>
                   <div className="flex justify-between text-xs text-gray-500">
                     <span>Velocity</span>
-                    <span className="text-gray-300 font-mono">{Math.sqrt((6.674e-11 * 5.972e24)/((6371+params.altitude)*1000)).toFixed(0)} m/s</span>
+                    <span className="text-gray-300 font-mono">{Math.sqrt((6.674e-11 * 5.972e24) / ((6371 + params.altitude) * 1000)).toFixed(0)} m/s</span>
                   </div>
                 </div>
               </div>
@@ -274,8 +296,8 @@ function App() {
                       <AreaChart data={results.dailyData}>
                         <defs>
                           <linearGradient id="colorGen" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
-                            <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+                            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3} />
+                            <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
                           </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} />
