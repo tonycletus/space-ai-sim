@@ -5,6 +5,7 @@ import { InputSlider } from './components/InputSlider';
 import { MetricsCard } from './components/MetricsCard';
 import { OrbitViz } from './components/OrbitViz';
 import { InfoModal } from './components/InfoModal';
+import { Analytics } from '@vercel/analytics/react';
 import {
   LineChart,
   Line,
@@ -333,6 +334,7 @@ function App() {
           </div>
         </main>
       </div>
+      <Analytics />
     </div>
   );
 }
